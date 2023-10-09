@@ -10,23 +10,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { SHEET_PLATAFORMS, SHEET_STACKS } from "@/utils/constants";
 import { GiHamburgerMenu } from "react-icons/gi";
-
-// const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
-const SHEET_STACKS: { [key: string]: string[] } = {
-  MOBILE: ["JAVA", "KOTLIN", "REACTNATIVE"],
-  BACKEND: ["NODE", "PHP", "LARAVEL", "NESTJS"],
-  FRONTEND: [
-    "NEXTJS",
-    "REACTJS",
-    "HTML/CSS/JS",
-    "TAILWIND",
-    "STYLEDCOMPONET",
-    "STICHES",
-  ],
-};
-const SHEET_PLATAFORMS = ["MOBILE", "FRONTEND", "BACKEND"];
-// type SheetSide = (typeof SHEET_SIDES)[number];
 
 export const MainMenu = () => {
   return (
