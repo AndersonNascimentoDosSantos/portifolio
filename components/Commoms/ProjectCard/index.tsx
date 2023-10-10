@@ -6,13 +6,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
-export const ProjectCard = ({ index }: { index?: number }) => {
+export const ProjectCard = ({
+  index,
+  className,
+}: {
+  index?: number;
+  className?: string;
+}) => {
   return (
-    <Card>
+    <Card className={cn("shadow-md", className)}>
       <CardHeader>
-        <CardTitle>Card Title : {index}</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle>In Development : {index}</CardTitle>
+        <CardDescription>in development</CardDescription>
       </CardHeader>
       <CardContent>
         <p>Card Content</p>

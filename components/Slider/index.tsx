@@ -43,7 +43,14 @@ const Pagination = ({
   const itemsArray = new Array(itemsQuantity).fill(null);
   return (
     <div className="flex gap-6 items-center justify-center mt-4">
-      <Button variant="icon" onClick={() => onSlideChange(currentSlide - 1)}>
+      <Button
+        variant="icon"
+        onClick={() =>
+          onSlideChange(
+            currentSlide !== 0 ? currentSlide - 1 : itemsQuantity - 1
+          )
+        }
+      >
         <IoChevronBackOutline size={16} className="text-primary-50" />
       </Button>
 
@@ -64,7 +71,12 @@ const Pagination = ({
           />
         ))}
       </div>
-      <Button variant="icon" onClick={() => onSlideChange(currentSlide + 1)}>
+      <Button
+        variant="icon"
+        onClick={() =>
+          onSlideChange(currentSlide < itemsQuantity - 1 ? currentSlide + 1 : 0)
+        }
+      >
         <IoChevronForwardOutline size={16} />
       </Button>
     </div>
@@ -90,46 +102,49 @@ export const SliderSwipe = <DataType extends unknown>({
   renderSlideItem,
   classes,
   slidesPerView = 1,
-  pagination = true,
+  pagination = false,
   reactKeyProp,
   ...props
 }: Props<DataType>) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  // console.log(pagination);
   const handleSlideChange = (slideIndex: number) => {
     if (slideIndex >= 0 && slideIndex < items.length)
       setCurrentSlide(slideIndex);
   };
 
   return (
-    <Swiper
-      onSlideChange={(swiper) => {
-        setCurrentSlide(swiper.activeIndex);
-      }}
-      slidesPerView={slidesPerView}
-      className={classes?.root || ""}
-      spaceBetween={48}
-      {...props}
-    >
-      {items.map((item) => (
-        <SwiperSlide
-          className={classes?.slideItem}
-          key={String(item[reactKeyProp])}
-        >
-          {renderSlideItem(item)}
-        </SwiperSlide>
-      ))}
-      {pagination ? (
-        <>
-          <SwiperController currentSlide={currentSlide} />
-          <Pagination
-            onSlideChange={handleSlideChange}
-            itemsQuantity={items.length}
-            currentSlide={currentSlide}
-          />
-        </>
-      ) : null}
-    </Swiper>
+    <div>
+      <Swiper
+        onSlideChange={(swiper) => {
+          setCurrentSlide(swiper.activeIndex);
+        }}
+        pagination={pagination}
+        slidesPerView={slidesPerView}
+        className={classes?.root || ""}
+        spaceBetween={16}
+        {...props}
+      >
+        {items.map((item) => (
+          <SwiperSlide
+            className={classes?.slideItem}
+            key={String(item[reactKeyProp])}
+          >
+            {renderSlideItem(item)}
+          </SwiperSlide>
+        ))}
+        {pagination ? (
+          <>
+            <SwiperController currentSlide={currentSlide} />
+            <Pagination
+              onSlideChange={handleSlideChange}
+              itemsQuantity={items.length}
+              currentSlide={currentSlide}
+            />
+          </>
+        ) : null}
+      </Swiper>
+    </div>
   );
 };
 
