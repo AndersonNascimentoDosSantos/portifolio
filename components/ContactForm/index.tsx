@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
 
@@ -30,6 +31,7 @@ const formSchema = z.object({
 });
 
 export function ContactForm() {
+  const { toast } = useToast();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,10 +44,25 @@ export function ContactForm() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    const parsed = formSchema.parse(values);
+
+    fetch("/api/contact", {
+      body: JSON.stringify(parsed),
+      method: "POST",
+    }).then((resp) => {
+      if (resp.status == 202) {
+        toast({
+          variant: "success",
+          title: "success! Email sended. ",
+
+          // description: "There was a problem with your request.",
+        });
+      }
+    });
+    // console.log(values);
   }
 
   return (
@@ -122,7 +139,7 @@ export function ContactForm() {
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Contact-me</Button>
       </form>
     </Form>
   );
