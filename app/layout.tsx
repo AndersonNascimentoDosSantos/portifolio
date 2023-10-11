@@ -24,8 +24,9 @@ export default function RootLayout({
           {/* <!-- Google tag (gtag.js) --> */}
           <script
             defer
-            src="https://www.googletagmanager.com/gtag/js?id=G-Y7P4JL20ER"
+            src="https://www.googletagmanager.com/gtag/js?id=G-KPS91VT7PC"
           ></script>
+
           <script
             defer
             dangerouslySetInnerHTML={{
@@ -33,7 +34,7 @@ export default function RootLayout({
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-Y7P4JL20ER');`,
+  gtag('config', 'G-KPS91VT7PC');`,
             }}
           ></script>
         </head>
