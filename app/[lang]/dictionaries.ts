@@ -21,7 +21,11 @@ const dictionaries: {
   }>;
 } = {
   en: () => import("../dictionaries/en.json").then((module) => module.default),
+  "en-US": () =>
+    import("../dictionaries/en.json").then((module) => module.default),
   "pt-br": () =>
+    import("../dictionaries/pt-br.json").then((module) => module.default),
+  pt: () =>
     import("../dictionaries/pt-br.json").then((module) => module.default),
 };
 
