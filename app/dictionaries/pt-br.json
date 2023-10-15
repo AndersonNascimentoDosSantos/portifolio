@@ -1,0 +1,66 @@
+{
+  "SLIDES_PROJECTS": [
+    {
+      "id": 1,
+      "description": "",
+      "title": "Camaçari Noticias",
+      "link": "https://cn1.com.br",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 2,
+      "description": "Acompanhe o Bahia Notícias e leia as últimas notícias de Salvador, da Bahia e do Brasil",
+      "title": "Bahia Noticias",
+      "link": "https://www.bahianoticias.com.br",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 3,
+      "description": "",
+      "title": "Sindicato dos Bancários",
+      "link": "https://www.bancariosbahia.org.br",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 4,
+      "description": "",
+      "title": "Sindicato Dos Metalúrgicos",
+      "link": "https://www.fetimbahia.org.br/",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 5,
+      "description": "compre, Venda, Compare Valores e Ficha Técnica de carros novos, seminovos e usados. Fique por dentro das novidades no mercado automotivo em um único lugar.",
+      "title": "BnAutos",
+      "link": " https://www.bnautos.com.br/",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php", "laravel"]
+    }
+  ],
+  "form": {
+    "name": {
+      "label": "Nome",
+      "placeholder": "Nome Completo",
+      "type": "text"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email",
+      "type": "text"
+    },
+    "subject": {
+      "label": "Assunto",
+      "placeholder": "Assunto",
+      "type": "text"
+    },
+    "message": {
+      "label": "Mensagem",
+      "placeholder": "Mensagem",
+      "type": "textarea"
+    },
+    "submit": {
+      "label": "Contrate-me",
+      "placeholder": "Contrate-me",
+      "type": "button"
+    }
+  }
+}

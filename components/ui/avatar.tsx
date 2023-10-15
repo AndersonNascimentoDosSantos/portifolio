@@ -20,11 +20,27 @@ const Avatar = React.forwardRef<
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
+const CardImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn(
+      "flex h-full w-full object-cover shrink-0 overflow-hidden",
+      className
+    )}
+    {...props}
+  />
+));
+CardImage.displayName = AvatarPrimitive.Root.displayName;
+
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
 >(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
+    loading="lazy"
     ref={ref}
     className={cn("aspect-square h-full w-full", className)}
     {...props}
@@ -39,7 +55,7 @@ const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted",
+      "flex h-full w-full items-center justify-center  bg-muted",
       className
     )}
     {...props}
@@ -47,4 +63,4 @@ const AvatarFallback = React.forwardRef<
 ));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
-export { Avatar, AvatarFallback, AvatarImage };
+export { Avatar, AvatarFallback, AvatarImage, CardImage };

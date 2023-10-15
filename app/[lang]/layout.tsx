@@ -4,22 +4,27 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Anderson's portifolio",
   description: "Personal projects",
 };
+export async function generateStaticParams() {
+  return [{ lang: "en-US" }, { lang: "pt-br" }];
+}
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: any;
 }) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={params.lang} suppressHydrationWarning>
         <head>
           {/* <!-- Google tag (gtag.js) --> */}
           <script
@@ -39,12 +44,7 @@ export default function RootLayout({
           ></script>
         </head>
         <body className={inter.className}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <TooltipProvider>
               <Header />
               {children}

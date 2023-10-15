@@ -42,7 +42,7 @@ const Pagination = ({
 }: PaginationProps) => {
   const itemsArray = new Array(itemsQuantity).fill(null);
   return (
-    <div className="flex gap-6 items-center justify-center mt-4">
+    <div className="flex gap-6 items-center justify-center ">
       <Button
         variant="icon"
         onClick={() =>

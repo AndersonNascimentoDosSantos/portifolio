@@ -1,0 +1,66 @@
+{
+  "SLIDES_PROJECTS": [
+    {
+      "id": 1,
+      "description": "",
+      "title": "Camaçari Noticias",
+      "link": "https://cn1.com.br",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 2,
+      "description": "Follow Bahia Notícias and read the latest news from Salvador, Bahia and Brazil",
+      "title": "Bahia News",
+      "link": "https://www.bahianoticias.com.br",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 3,
+      "description": "",
+      "title": "Bank Workers Unions",
+      "link": "https://www.bancariosbahia.org.br",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 4,
+      "description": "",
+      "title": "Metalurgic Syndicate",
+      "link": "https://www.fetimbahia.org.br/",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php"]
+    },
+    {
+      "id": 5,
+      "description": "Buy, Sell, Compare Values and Technical Data of new, used and used cars. Stay up to date with the latest news in the automotive market in one place.",
+      "title": "BnAutos",
+      "link": " https://www.bnautos.com.br/",
+      "stack": ["javascript", "nextjs", "tailwind", "react", "php", "laravel"]
+    }
+  ],
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Full Name",
+      "type": "text"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email",
+      "type": "text"
+    },
+    "subject": {
+      "label": "Subject",
+      "placeholder": "Subject",
+      "type": "text"
+    },
+    "message": {
+      "label": "Message",
+      "placeholder": "Message",
+      "type": "textarea"
+    },
+    "submit": {
+      "label": "Hire-me",
+      "placeholder": "Hire-me",
+      "type": "button"
+    }
+  }
+}

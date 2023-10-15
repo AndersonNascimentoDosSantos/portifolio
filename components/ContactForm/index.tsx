@@ -1,8 +1,7 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
+import { iForm } from "@/app/[lang]/dictionaries";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -29,8 +28,8 @@ const formSchema = z.object({
     message: "message must be at least 2 characters.",
   }),
 });
-
-export function ContactForm() {
+type iKey = "message" | "name" | "email" | "subject";
+export function ContactForm({ formnames }: { formnames: iForm }) {
   const { toast } = useToast();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -71,75 +70,46 @@ export function ContactForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 border p-4 rounded-lg"
       >
-        <div className="flex w-[full]  justify-between items-center gap-3">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem className="flex-[1]">
-                <FormLabel>Name:*</FormLabel>
-                <FormControl>
-                  <Input placeholder="Full name" {...field} />
-                </FormControl>
-                {/* <FormDescription>
+        {Object.keys(formnames).map((key: string) => {
+          const newKey: iKey = key as iKey;
+          if (formnames[newKey].type !== "button")
+            return (
+              <div
+                className="flex w-[full]  justify-between items-center gap-0"
+                key={newKey}
+              >
+                <FormField
+                  control={form.control}
+                  name={newKey}
+                  render={({ field }) => (
+                    <FormItem className="flex-[1]">
+                      <FormLabel>{formnames[newKey].label}:*</FormLabel>
+                      <FormControl>
+                        {formnames[newKey].type == "text" ? (
+                          <Input
+                            placeholder={formnames[newKey].placeholder}
+                            {...field}
+                          />
+                        ) : (
+                          <Textarea
+                            placeholder={formnames[newKey].placeholder}
+                            {...field}
+                            rows={6}
+                          />
+                        )}
+                      </FormControl>
+                      {/* <FormDescription>
                 This is your public display name.
               </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="flex-[1]">
-                <FormLabel>Email:*</FormLabel>
-                <FormControl>
-                  <Input placeholder="Email" {...field} />
-                </FormControl>
-                {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <div className=" flex flex-col gap-2">
-          <FormField
-            control={form.control}
-            name="subject"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Subject:*</FormLabel>
-                <FormControl>
-                  <Input placeholder="Subject" {...field} />
-                </FormControl>
-                {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message:*</FormLabel>
-                <FormControl>
-                  <Textarea placeholder="Message" {...field} rows={6} />
-                </FormControl>
-                {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <Button type="submit">Contact-me</Button>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            );
+        })}
+
+        <Button type="submit">{formnames.submit.placeholder}</Button>
       </form>
     </Form>
   );
