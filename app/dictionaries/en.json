@@ -2,7 +2,7 @@
   "SLIDES_PROJECTS": [
     {
       "id": 1,
-      "description": "",
+      "description": "Camaçari Noticias - News from Bahia and Bahians,At Camaçari Noticias you can stay up to date with the main news on politics, economics, employment, education, health and much more, with the credibility of the Aratu Group.",
       "title": "Camaçari Noticias",
       "link": "https://cn1.com.br",
       "stack": ["javascript", "nextjs", "tailwind", "react", "php"]

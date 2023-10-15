@@ -80,6 +80,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    max-width: 1366px;
   }
   .custom-styles {
     @apply shadow-left-bottom; /* Apply the box shadow styles */

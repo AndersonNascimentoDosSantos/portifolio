@@ -2,7 +2,7 @@
   "SLIDES_PROJECTS": [
     {
       "id": 1,
-      "description": "",
+      "description": "Camaçari Noticias - Notícias da Bahia e dos baianos.No Camaçari Noticias você se atualiza com as principais notícias da política, economia, emprego, educação, saúde e muito mais, com a credibilidade do Grupo Aratu",
       "title": "Camaçari Noticias",
       "link": "https://cn1.com.br",
       "stack": ["javascript", "nextjs", "tailwind", "react", "php"]

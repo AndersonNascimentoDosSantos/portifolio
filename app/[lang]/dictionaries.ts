@@ -1,4 +1,4 @@
-// "use server";
+import "server-only";
 
 export type iForm = {
   [key: string]: {

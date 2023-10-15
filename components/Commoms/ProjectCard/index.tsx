@@ -1,3 +1,4 @@
+"use server";
 import {
   Card,
   CardContent,
@@ -43,8 +44,11 @@ export const CardProject = ({
 }) => {
   return (
     <Card className={cn(className)}>
-      <CardHeader className="h-[45%]">
-        <ImageCard src={`/api/capture-screenshot?url=${data.link}`} />
+      <CardHeader className="w-full">
+        <ImageCard
+          src={`/api/capture-screenshot?url=${data.link}`}
+          className="h-[125px]"
+        />
       </CardHeader>
 
       <CardContent>

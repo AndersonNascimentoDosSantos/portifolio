@@ -102,7 +102,7 @@ export const SliderSwipe = <DataType extends unknown>({
   renderSlideItem,
   classes,
   slidesPerView = 1,
-  pagination = false,
+  pagination = true,
   reactKeyProp,
   ...props
 }: Props<DataType>) => {
