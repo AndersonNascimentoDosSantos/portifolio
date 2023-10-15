@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 
+import ComponentName from "@/components/clientComponents/Slider/indx";
 import { Suspense } from "react";
 import { getDictionary } from "./dictionaries";
 
@@ -21,19 +22,8 @@ export default async function Page({
           <div className="flex  items-center justify-center">
             <h2>Active Projects</h2>
           </div>
-          <Suspense>
-            {/* <SliderSwipe
-              loop
-              pagination
-              slidesPerView={1}
-              items={dict.SLIDES_PROJECTS}
-              classes={{
-                slideItem: "w-full",
-              }}
-              reactKeyProp="id"
-              renderSlideItem={ClientComponent}
-            /> */}
-          </Suspense>
+
+          <ComponentName {...{ lang }} />
         </section>
       </div>
     </main>
