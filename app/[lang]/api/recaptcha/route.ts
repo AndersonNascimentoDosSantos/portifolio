@@ -1,13 +1,14 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 
 import axios from "axios";
+import { NextRequest } from "next/server";
 
-export const POST = async (req: NextApiRequest, res: NextApiResponse) => {
+export const POST = async (req: NextRequest, res: NextApiResponse) => {
   try {
-    const { token } = req.body;
+    const { token } = await req.json();
     const response = await axios.post(
       "https://www.google.com/recaptcha/api/siteverify",
-      `secret=6LcVhf8nAAAAADX2BughJ_Va9i2yWWnAt0K9If1S&response=${token}`,
+      `secret=6LeY_64oAAAAAB1gEIwGX4wa-Blq-syE600ohjVU&response=${token}`,
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
