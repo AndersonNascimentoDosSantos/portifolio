@@ -13,10 +13,10 @@ import {
 import { SHEET_PLATAFORMS, SHEET_STACKS } from "@/utils/constants";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-export const MainMenu = () => {
+export const MainMenu = ({ className }: { className?: string }) => {
   return (
     <Sheet key={"right"}>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className={className}>
         <Button variant="outline">
           <GiHamburgerMenu />
         </Button>

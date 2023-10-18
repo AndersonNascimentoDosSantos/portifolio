@@ -1,8 +1,11 @@
 import { socialMediaLinks } from "@/config/social-media";
+import clsx from "clsx";
 
-export const SocialMedia: React.FC = () => {
+export const SocialMedia: React.FC<{
+  className?: string;
+}> = ({ className }) => {
   return (
-    <div className="flex justify-between">
+    <div className={clsx("flex justify-between", className)}>
       {Object.keys(socialMediaLinks).map((link) => {
         return (
           <a
@@ -11,6 +14,7 @@ export const SocialMedia: React.FC = () => {
             title={String(socialMediaLinks[link].title)}
             target="_blank"
             rel="noopener noreferrer"
+            className="border border-spacing-1  p-[0.2rem] rounded"
           >
             {socialMediaLinks[link].icon}
           </a>

@@ -32,7 +32,7 @@ export const socialMediaLinks: {
   linkedin: {
     title: "Linkedin",
     link: "https://www.linkedin.com/in/andersonnascimentodossantos/",
-    icon: <FaLinkedin size={32} />,
+    icon: <FaLinkedin size={32} fill={"#0077b5"} />,
     id: 1,
   },
 };

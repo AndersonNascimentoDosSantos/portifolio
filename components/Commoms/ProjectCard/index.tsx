@@ -47,7 +47,7 @@ export const CardProject = ({
     `/api/capture-screenshot?url=${data.link}`,
     async (url) => {
       const { data } = await axios.get(url, {
-        timeout: 45000,
+        timeout: 40000,
       });
       return data;
     }
@@ -58,7 +58,7 @@ export const CardProject = ({
         <CardHeader className="w-full">
           <ImageCard
             src={`data:image/png;base64,${base64Image}`}
-            className="h-[300px]"
+            className="h-[200px]"
           />
           {/* <img src={} alt="Imagem" /> */}
           {/*  */}

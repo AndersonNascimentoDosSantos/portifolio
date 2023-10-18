@@ -1,7 +1,4 @@
 "use client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
 import { iForm } from "@/app/[lang]/dictionaries";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,9 +10,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
-import { Textarea } from "../ui/textarea";
+import { toast } from "react-hot-toast";
+import * as z from "zod";
+import { Textarea } from "../../ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -31,9 +32,8 @@ const formSchema = z.object({
 });
 type iKey = "message" | "name" | "email" | "subject";
 export function ContactForm({ formnames }: { formnames: iForm }) {
-  const { toast } = useToast();
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
+  const { reset, ...form } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -42,31 +42,47 @@ export function ContactForm({ formnames }: { formnames: iForm }) {
       message: "",
     },
   });
-
+  const { executeRecaptcha } = useGoogleReCaptcha();
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     const parsed = formSchema.parse(values);
+    if (!executeRecaptcha) {
+      toast.error("Não foi possível validar o captcha");
+      return;
+    }
 
-    fetch("/api/contact", {
-      body: JSON.stringify(parsed),
-      method: "POST",
-    }).then((resp) => {
-      if (resp.status == 202) {
-        toast({
-          variant: "success",
-          title: "success! Email sended. ",
+    const recaptchaToken = await executeRecaptcha();
 
-          // description: "There was a problem with your request.",
+    try {
+      const { data: captchaResponse } = await axios.post("/api/recaptcha", {
+        token: recaptchaToken,
+      });
+
+      if (captchaResponse.data.success) {
+        axios.post("/api/contact", values).then((resp) => {
+          if (resp.status == 202) {
+            toast.success("success! Email sended. ");
+            reset();
+          }
         });
+
+        // toast.success("Formulário enviado com sucesso!");
+      } else {
+        toast.error(
+          "Não foi possível enviar o formulário. Por favor, verifique que vocé não é um robô."
+        );
       }
-    });
+    } catch (error) {
+      toast.error("Não foi possível enviar o formulário.");
+    }
+
     // console.log(values);
   }
 
   return (
-    <Form {...form}>
+    <Form {...{ ...form, reset }}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 border p-4 rounded-lg"
