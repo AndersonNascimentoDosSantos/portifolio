@@ -5,11 +5,7 @@ import { SlidesCard } from "@/utils/constants";
 const ClientComponent = ({ ...item }: SlidesCard) => {
   return (
     <div className="flex flex-col gap-2 p-5">
-      <CardProject
-        className="min-h-[385px]"
-        src="https://via.placeholder.com/300x300"
-        data={item}
-      />
+      <CardProject className="min-h-[385px]" data={item} />
       {/* <ProjectCard index={item.id} className="w-full h-full" /> */}
     </div>
   );

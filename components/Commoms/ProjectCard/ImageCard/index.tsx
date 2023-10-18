@@ -10,9 +10,7 @@ export function ImageCard({
   return (
     <CardImage className={className}>
       <AvatarImage src={src} alt="@shadcn" />
-      <AvatarFallback>
-        <AvatarImage src="https://via.placeholder.com/300x300" alt="@shadcn" />
-      </AvatarFallback>
+      <AvatarFallback>No Image</AvatarFallback>
     </CardImage>
   );
 }

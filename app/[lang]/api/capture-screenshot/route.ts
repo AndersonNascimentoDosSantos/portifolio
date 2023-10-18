@@ -1,88 +1,72 @@
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import axios from "axios";
 import cache from "memory-cache";
+import type { NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+type Json = {
+  message: string;
+};
 
-export async function GET(req: NextRequest) {
+export async function GET(
+  req: NextRequest,
+  res: NextApiResponse<Json | Buffer>
+) {
   const url = req.nextUrl.searchParams.get("url");
-
+  const apiToken = process.env.BLESS_TOKEN;
+  const urlRequest = "https://chrome.browserless.io/screenshot";
   if (!url) {
     return new NextResponse('Missing "url" parameter', { status: 400 });
   }
   // Verifique se a imagem já está em cache
   const cachedImage = cache.get(url);
-
   if (cachedImage) {
     // Se a imagem estiver em cache, retorne-a diretamente
     const response = new NextResponse(cachedImage);
     response.headers.set("content-type", "image/png");
     return response;
   }
-
-  const browser = await puppeteer.launch({
-    headless: "new",
-    ignoreHTTPSErrors: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
-  const page = await browser.newPage();
-
-  await page.setRequestInterception(true);
-
-  const rejectRequestPattern = [
-    "googlesyndication.com",
-    "/*.doubleclick.net",
-    "/*.amazon-adsystem.com",
-    "/*.adnxs.com",
-    "/*.onesignal.com",
-    "/*gcma_includes/*",
-  ];
-  const blockList: any = [];
-  page.on("request", (request) => {
-    if (rejectRequestPattern.find((pattern) => request.url().match(pattern))) {
-      blockList.push(request.url());
-      request.abort();
-    } else request.continue();
-  });
-  try {
-    await page.goto(url, { timeout: 45000 });
-    await page.setViewport({ width: 1440, height: 900 });
-    await page.setUserAgent(
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"
-    );
-    const screenshot = await page.screenshot({
-      optimizeForSpeed: true,
+  const requestData = {
+    url,
+    // timeout: 45000,
+    gotoOptions: {
+      timeout: 30000,
+      waitUntil: "load",
+    },
+    options: {
+      fullPage: false,
       type: "png",
-    });
-    // console.log(screenshot);
-    // Create a Blob from the screenshot Buffer.
-    // const blob = new Blob([screenshot], { type: "image/png" });
-    // Armazene a imagem capturada em cache com um tempo de expiração
-    cache.put(url, screenshot, 300000); // Cache válido por 5 minutos (300000 milissegundos)
-    const response = new NextResponse(screenshot);
-    response.headers.set("content-type", "image/png");
-    // console.log(
-    //   `Blocked ${blockList.length} requests with urls: ${JSON.stringify(
-    //     blockList
-    //   )}`
-    // );
-    return response;
+      // timeout: 45000,
+      // quality: 75,
+      encoding: "base64",
+    },
+    viewport: {
+      height: 1440,
+      width: 900,
+    },
+  };
 
-    // Send the response.
-  } catch (error: any) {
-    console.error(error);
-    return new Response(
-      JSON.stringify({
-        error: "An error occurred while taking the screenshot",
-        message: String(error),
-      }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
-  } finally {
-    await browser.close();
-    // return Response.json(
-    //   {
-    //     error: "An error occurred while taking the screenshot",
-    //   },
-    //   { status: 500 }
-    // );
+  const { data, status } = await axios.post<any>(urlRequest, requestData, {
+    headers: {
+      "Cache-Control": "no-cache",
+      "Content-Type": "application/json",
+    },
+    params: {
+      token: apiToken,
+    },
+    // responseType: "arraybuffer",
+    timeout: 45000,
+  });
+
+  if (status === 200) {
+    const imageBuffer = Buffer.from(data, "base64");
+    const base64Image = imageBuffer.toString("base64");
+    cache.put(url, base64Image, 30000);
+    const responser = new NextResponse(base64Image);
+    responser.headers.set("Content-Type", "image/png"); // Defina o tipo de conteúdo apropriado
+    return responser;
   }
+
+  // const resp = new NextResponse(data).blob();
+  // resp.headers.set("content-type", "image/jpeg");
+  // return resp;
 }
