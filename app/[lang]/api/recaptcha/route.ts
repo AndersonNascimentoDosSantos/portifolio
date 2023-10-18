@@ -8,7 +8,7 @@ export const POST = async (req: NextRequest, res: NextApiResponse) => {
     const { token } = await req.json();
     const response = await axios.post(
       "https://www.google.com/recaptcha/api/siteverify",
-      `secret=6LeY_64oAAAAAB1gEIwGX4wa-Blq-syE600ohjVU&response=${token}`,
+      `secret=${process.env.RECAPTCHA_SECRET}&response=${token}`,
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
