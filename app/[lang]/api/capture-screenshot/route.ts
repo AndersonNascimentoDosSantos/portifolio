@@ -29,7 +29,7 @@ export async function GET(
     url,
     // timeout: 45000,
     gotoOptions: {
-      timeout: 30000,
+      // timeout: 30000,
       waitUntil: "load",
     },
     options: {
@@ -40,8 +40,8 @@ export async function GET(
       encoding: "base64",
     },
     viewport: {
-      height: 1440,
-      width: 900,
+      height: 1080,
+      width: 1920,
     },
   };
 
@@ -54,7 +54,7 @@ export async function GET(
       token: apiToken,
     },
     // responseType: "arraybuffer",
-    timeout: 45000,
+    // timeout: 45000,
   });
 
   if (status === 200) {
