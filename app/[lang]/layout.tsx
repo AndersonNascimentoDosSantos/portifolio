@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ThemeProvider from "@/context/ThemeProvider";
 import { QueryProvider } from "@/providers/queryProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
@@ -48,7 +49,10 @@ export default function RootLayout({
           <ThemeProvider>
             <TooltipProvider>
               <Header />
-              <QueryProvider>{children}</QueryProvider>
+              <QueryProvider>
+                {children}
+                <SpeedInsights />
+              </QueryProvider>
             </TooltipProvider>
             <Toaster />
           </ThemeProvider>
