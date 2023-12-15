@@ -1,7 +1,8 @@
 "use client";
-import { profileName } from "@/app/[lang]/projects/page";
+
 import { Badge } from "@/components/ui/badge";
 import { Repo } from "@/types";
+// import { profileName } from "@/utils/constants";
 // import { getReposWithLanguages } from "@/services/api";
 import { getReposWithLanguages } from "@/utils/fetcher";
 import useSWR from "swr";
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export default function Languages({ slug }: Props) {
-  const { data: allRepos } = useSWR<Repo[]>(profileName, getReposWithLanguages);
+  const { data: allRepos } = useSWR<Repo[]>(slug, getReposWithLanguages);
 
   const reposWithLanguages = allRepos
     ? allRepos?.filter((repo) => repo.language !== null)

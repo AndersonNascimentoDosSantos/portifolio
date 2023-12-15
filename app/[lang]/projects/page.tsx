@@ -8,13 +8,14 @@ import { Skeleton, SquareSkeleton } from "@/components/Commoms/Skeleton";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ProjectCardProps, Repo } from "@/types";
+import { profileName } from "@/utils/constants";
 import { getUserData, getUserRepos } from "@/utils/fetcher";
 import Link from "next/link";
 import { JSX } from "react";
 import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai";
 import { useInfiniteQuery } from "react-query";
 import useSWR from "swr";
-export const profileName = "AndersonNascimentoDosSantos";
+
 const Project = () => {
   const { data: user, isLoading } = useSWR({ profileName }, getUserData);
 

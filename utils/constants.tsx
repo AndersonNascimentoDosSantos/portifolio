@@ -3,6 +3,7 @@ import { BiLogoTailwindCss } from "react-icons/bi";
 import { FaJsSquare, FaLaravel, FaPhp, FaReact } from "react-icons/fa";
 import { TbBrandNextjs } from "react-icons/tb";
 
+export const profileName = "AndersonNascimentoDosSantos";
 // const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 export interface SlidesCard {
   id: number;
