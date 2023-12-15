@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 export const socialMediaLinks: {
   [key: string]: {
     [key: string]: string | ReactNode;
@@ -33,6 +33,12 @@ export const socialMediaLinks: {
     title: "Linkedin",
     link: "https://www.linkedin.com/in/andersonnascimentodossantos/",
     icon: <FaLinkedin size={32} fill={"#0077b5"} />,
+    id: 1,
+  },
+  github: {
+    title: "Github",
+    link: "https://github.com/AndersonNascimentoDosSantos",
+    icon: <FaGithub size={32} className="fill-primary" />,
     id: 1,
   },
 };

@@ -5,18 +5,19 @@ export type iForm = {
     type: string;
   };
 };
-// : { [key: string]: Array<SlidesCard> }
+export interface iSlidesProjects {
+  id: number;
+  description: string;
+  title: string;
+  link: string;
+  stack: string[];
+}
+export interface iDictionaries {
+  SLIDES_PROJECTS: iSlidesProjects[];
+  form: iForm;
+}
 const dictionaries: {
-  [key: string]: () => Promise<{
-    SLIDES_PROJECTS: {
-      id: number;
-      description: string;
-      title: string;
-      link: string;
-      stack: string[];
-    }[];
-    form: iForm;
-  }>;
+  [key: string]: () => Promise<iDictionaries>;
 } = {
   en: () => import("../dictionaries/en.json").then((module) => module.default),
   "en-US": () =>

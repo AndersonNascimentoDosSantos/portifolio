@@ -10,8 +10,8 @@ export default async function Page({
 }) {
   const dict = await getDictionary(lang);
   return (
-    <main className="flex min-h-screen max-w-screen flex-col  justify-between p-8 ">
-      <div className="md:grid md:grid-cols-3 md:grid-rows-1 h-[full] gap-5 flex flex-col">
+    <main className="container mx-auto mt-28 max-sm:mt-20">
+      <div className="h-[full] gap-5 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 ">
         <section className="flex  h-[full] flex-col flex-grow flex-[2] col-span-2">
           <Suspense>
             <FormContact formnames={dict.form} />
