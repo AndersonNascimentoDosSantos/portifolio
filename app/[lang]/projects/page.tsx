@@ -42,13 +42,13 @@ const Project = () => {
   if (isError) return <div>Algo deu errado...</div>;
 
   return (
-    <main className="container mx-auto mt-28 max-sm:mt-20">
+    <main className="container mx-auto mt-28 max-sm:mt-20 flex-col">
       {!isLoading && (
         <section
           id="hero"
-          className="w-full grid grid-cols-2 gap-8 p-4 max-sm:grid-cols-1 "
+          className="w-full flex-col md:grid md:grid-cols-2 gap-8 p-4 max-sm:grid-cols-1 "
         >
-          <div className="flex flex-col justify-center gap-2 pl-24 max-sm:p-0 animate-fade-right">
+          <div className="order-2 flex flex-col justify-center gap-2 md:pl-24 max-sm:p-0 animate-fade-right md:order-1">
             <span className="text-xl text-slate-300">Olá. Eu me chamo</span>
             <h2 className="font-bold text-5xl">{user?.name}</h2>
             <p className="text-slate-400">{user?.bio ?? ""}</p>
@@ -71,14 +71,16 @@ const Project = () => {
               />
             </div>
           </div>
-          <ImageCard
-            src={user?.avatar_url}
-            // alt="Github profile avatar"
-            // loading="lazy"
-            // width={340}
-            // height={340}
-            className="rounded-full border-4 border-primary max-sm:mx-auto animate-fade-left"
-          />
+          <div className="order-1 md:order-2 mt-20">
+            <ImageCard
+              src={user?.avatar_url}
+              // alt="Github profile avatar"
+              // loading="lazy"
+              // width={340}
+              // height={340}
+              className=" rounded-full border-4 border-primary max-sm:mx-auto animate-fade-left "
+            />
+          </div>
         </section>
       )}
 
@@ -91,7 +93,7 @@ const Project = () => {
         <h2 className="font-bold text-3xl text-center animate-fade-down">
           Meus <span className="text-primary">Projetos </span> de Estudo
         </h2>
-        <div className="w-full my-8 grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 animate-fade-up">
+        <div className="w-full my-8 flex flex-col gap-4 md:grid  lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-1 animate-fade-up">
           <>
             {repos &&
               repos.pages.map((repos) =>
