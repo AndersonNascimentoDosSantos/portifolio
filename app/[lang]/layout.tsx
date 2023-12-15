@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ThemeProvider from "@/context/ThemeProvider";
+import { QueryProvider } from "@/providers/queryProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
@@ -44,10 +45,10 @@ export default function RootLayout({
           ></script>
         </head>
         <body className={inter.className}>
-          <ThemeProvider >
+          <ThemeProvider>
             <TooltipProvider>
               <Header />
-              {children}
+              <QueryProvider>{children}</QueryProvider>
             </TooltipProvider>
             <Toaster />
           </ThemeProvider>
