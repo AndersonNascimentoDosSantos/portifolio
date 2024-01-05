@@ -4,6 +4,8 @@ import Experience from "@/components/newPortifolioComp/Experience/Experience";
 import Footer from "@/components/newPortifolioComp/Footer/Footer";
 import Intro from "@/components/newPortifolioComp/Intro/Intro";
 import Services from "@/components/newPortifolioComp/Services/Services";
+import ScreenSizeWarning from "@/components/newPortifolioComp/Warning";
+import { useMatchMedia } from "@/hooks/use-match-media";
 import { useTheme } from "next-themes";
 
 export default function Page({
@@ -14,24 +16,25 @@ export default function Page({
   // const { data: dict } = useSWR(lang, getDictionary);
   // const dict = await getDictionary(lang);
   const { theme } = useTheme();
-  return (
-    <main className="container mx-auto mt-28 max-sm:mt-20">
-      <div
-        style={{
-          background: theme ? "black" : "",
-          color: theme ? "white" : "",
-        }}
-      >
-        {/* <Navbar /> */}
-        <Intro />
-        <Services />
-        <Experience />
-        {/* <Works /> */}
-        {/* <Portfolio /> */}
-        {/* <Testimonial /> */}
-        <Contact />
-        <Footer />
-      </div>
+  const isScreenLessThan768 = useMatchMedia("(max-width: 768px)");
+  return !isScreenLessThan768 ? (
+    <main
+      className="container mx-auto mt-28 max-sm:mt-20 "
+      style={{
+        background: theme == "dark" ? "black" : "",
+        color: theme == "dark" ? "white" : "",
+      }}
+    >
+      {/* <Navbar /> */}
+      <Intro />
+      <Services />
+      <Experience />
+      {/* <Works /> */}
+      {/* <Portfolio /> */}
+      {/* <Testimonial /> */}
+      <Contact />
+      <Footer />
+
       {/* <div className="h-[full] gap-5 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 ">
         <section className="flex  h-[full] flex-col flex-grow flex-[2] col-span-2">
           <Suspense>
@@ -47,5 +50,7 @@ export default function Page({
         </section>
       </div> */}
     </main>
+  ) : (
+    <ScreenSizeWarning lang={lang} />
   );
 }
