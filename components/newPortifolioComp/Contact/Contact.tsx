@@ -52,9 +52,11 @@ const Contact = ({ lang }: { [key: string]: string }) => {
       </div>
       {/* right side form */}
       <div className="c-right">
-        <Suspense>
-          <FormContact formnames={dict?.form} />
-        </Suspense>
+        <section className="flex  h-[full] flex-col flex-grow flex-[1] col-span-1">
+          <Suspense>
+            <FormContact formnames={dict?.form} />
+          </Suspense>
+        </section>
         {/* <form ref={form} onSubmit={sendEmail}>
           <input
             type="text"
