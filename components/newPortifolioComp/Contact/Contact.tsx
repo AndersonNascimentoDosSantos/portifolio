@@ -1,11 +1,15 @@
 "use client";
 import emailjs from "@emailjs/browser";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 
+import { getDictionary } from "@/app/[lang]/dictionaries";
+import FormContact from "@/components/Form";
 import { useTheme } from "next-themes";
+import useSWR from "swr";
 import "./Contact.css";
-const Contact = () => {
+const Contact = ({ lang }: { [key: string]: string }) => {
   const { theme } = useTheme();
+  const { data: dict } = useSWR(lang, getDictionary);
   // const theme = useContext(themeContext);
   // const darkMode = theme.state.darkMode;
   const form = useRef<HTMLFormElement>(null);
@@ -48,7 +52,10 @@ const Contact = () => {
       </div>
       {/* right side form */}
       <div className="c-right">
-        <form ref={form} onSubmit={sendEmail}>
+        <Suspense>
+          <FormContact formnames={dict?.form} />
+        </Suspense>
+        {/* <form ref={form} onSubmit={sendEmail}>
           <input
             type="text"
             name="user_name"
@@ -68,7 +75,7 @@ const Contact = () => {
             className="blur c-blur1"
             style={{ background: "var(--purple)" }}
           ></div>
-        </form>
+        </form> */}
       </div>
     </div>
   );
