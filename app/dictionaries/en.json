@@ -62,5 +62,11 @@
       "placeholder": "Hire-me",
       "type": "button"
     }
+  },
+  "projects": {
+    "gratting": "Hello!, my name is",
+    "languagesLabel": "Main programming languages. ",
+    "contact": "contact-me",
+    "share": "share"
   }
 }

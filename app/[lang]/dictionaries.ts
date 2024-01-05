@@ -15,6 +15,7 @@ export interface iSlidesProjects {
 export interface iDictionaries {
   SLIDES_PROJECTS: iSlidesProjects[];
   form: iForm;
+  projects: { [key: string]: string };
 }
 const dictionaries: {
   [key: string]: () => Promise<iDictionaries>;

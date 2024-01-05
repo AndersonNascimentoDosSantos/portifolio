@@ -4,7 +4,7 @@ import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
 import ClientComponent from "../RenderItem";
 
-export default function ComponentName({ lang }: { lang: string }) {
+export default function ComponentName({ lang }: { lang?: string,itemList:Array<any> }) {
   const { data: dict, error } = useSWR(lang, fetcher);
 
   if (error) {
@@ -26,6 +26,7 @@ export default function ComponentName({ lang }: { lang: string }) {
       }}
       reactKeyProp="id"
       renderSlideItem={ClientComponent}
+
     />
   );
 }

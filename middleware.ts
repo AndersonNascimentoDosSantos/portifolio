@@ -1,5 +1,6 @@
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { NextResponse } from "next/server";
 let locales = ["en", "pt-br"];
 // Get the preferred locale, similar to the above or using a library
 function getLocale(request: Request) {
@@ -24,6 +25,9 @@ export function middleware(request: any) {
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
+  if (pathname.startsWith("/img")) {
+    return NextResponse.next(); // Pass the request to Next.js for static handling
+  }
 
   if (pathnameHasLocale) return;
 
@@ -39,6 +43,7 @@ export const config = {
   matcher: [
     // Skip all internal paths (_next)
     "/((?!_next).*)",
+    // "/((?!img).*)",
     // Optional: only run on root (/) URL
     // "/",
   ],

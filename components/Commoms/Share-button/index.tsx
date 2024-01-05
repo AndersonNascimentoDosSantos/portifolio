@@ -1,5 +1,6 @@
 "use client";
 
+import { iDictionaries } from "@/app/[lang]/dictionaries";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -19,13 +20,14 @@ import {
 
 interface ShareButtonProps {
   url: string;
+  dict: iDictionaries;
 }
 
-export function ShareButton({ url }: ShareButtonProps) {
+export function ShareButton({ url, dict }: ShareButtonProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">Compartilhar perfil</Button>
+        <Button variant="outline">{dict.projects.share}</Button>
       </PopoverTrigger>
       <PopoverContent className="flex items-center justify-around gap-2 flex-wrap max-w-[160px]">
         <WhatsappShareButton url={url}>
