@@ -3,7 +3,11 @@ import { GithubCard } from "@/components/Commoms/GithubCard";
 import Languages from "@/components/Commoms/Languages";
 import { ImageCard } from "@/components/Commoms/ProjectCard/ImageCard";
 import { ShareButton } from "@/components/Commoms/Share-button";
-import { Skeleton, SquareSkeleton } from "@/components/Commoms/Skeleton";
+import {
+  Skeleton,
+  SkeletonText,
+  SquareSkeleton,
+} from "@/components/Commoms/Skeleton";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,15 +19,18 @@ import { JSX } from "react";
 import { AiOutlineLoading3Quarters as Spinner } from "react-icons/ai";
 import { useInfiniteQuery } from "react-query";
 import useSWR from "swr";
+import { getDictionary } from "../dictionaries";
 
-const Project = () => {
+const Project = ({ params: { lang } }: { params: { lang: string } }) => {
+  // const [dict, setDict] = useState<iDictionaries>({} as iDictionaries);
+
   const { data: user, isLoading } = useSWR({ profileName }, getUserData);
 
+  const { data: dict, isLoading: isLoadingDict } = useSWR(lang, getDictionary);
   // useEffect(() => {
-  //   const teste = async () =>
-  //     console.log(await getUserData({ profileName }), "dentro do user effect");
-
-  //   teste();
+  //   getDictionary(lang).then((resp) => {
+  //     setDict(resp);
+  //   });
   // }, []);
   // console.log(user, "depois do swr");
   const {
@@ -49,10 +56,15 @@ const Project = () => {
           className="w-full flex-col md:grid md:grid-cols-2 gap-8 p-4 max-sm:grid-cols-1 "
         >
           <div className="order-2 flex flex-col justify-center gap-2 md:pl-24 max-sm:p-0 animate-fade-right md:order-1">
-            <span className="text-xl text-slate-300">Olá. Eu me chamo</span>
+            {!isLoadingDict && (
+              <span className="text-xl text-slate-300">
+                {dict?.projects.gratting}
+              </span>
+            )}
+            {isLoadingDict && <SkeletonText />}
             <h2 className="font-bold text-5xl">{user?.name}</h2>
             <p className="text-slate-400">{user?.bio ?? ""}</p>
-            <Languages slug={profileName} />
+            <Languages {...{ lang, slug: profileName }} />
             <div className="mt-5 flex items-center gap-2">
               <Link
                 href={
@@ -64,21 +76,27 @@ const Project = () => {
                   "max-w-[150px]"
                 )}
               >
-                Entre em contato
+                {dict?.projects.contact}
               </Link>
-              <ShareButton
-                url={`https://my-gitfolio.vercel.app/portfolio/${profileName}`}
-              />
+              {dict && (
+                <ShareButton
+                  {...{
+                    url: `https://my-gitfolio.vercel.app/portfolio/${profileName}`,
+                    dict,
+                  }}
+                />
+              )}
+              {isLoadingDict && <SkeletonText />}
             </div>
           </div>
-          <div className="order-1 md:order-2 mt-20">
+          <div className="order-1 md:order-2 mt-20 h-[350px] w-[350px]">
             <ImageCard
               src={user?.avatar_url}
               // alt="Github profile avatar"
               // loading="lazy"
               // width={340}
               // height={340}
-              className=" rounded-full border-4 border-primary max-sm:mx-auto animate-fade-left "
+              className="rounded-full border-4 border-primary max-sm:mx-auto animate-fade-left "
             />
           </div>
         </section>
@@ -93,7 +111,7 @@ const Project = () => {
         <h2 className="font-bold text-3xl text-center animate-fade-down">
           Meus <span className="text-primary">Projetos </span> de Estudo
         </h2>
-        <div className="w-full my-8 flex flex-col gap-4 md:grid  lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-1 animate-fade-up">
+        <div className="w-full my-8 flex flex-col gap-4 md:grid  lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-1 animate-fade-up">
           <>
             {repos &&
               repos.pages.map((repos) =>

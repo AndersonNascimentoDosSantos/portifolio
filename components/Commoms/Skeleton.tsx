@@ -29,3 +29,15 @@ export const SquareSkeleton = () => {
     </div>
   );
 };
+
+export const SkeletonText = () => {
+  return (
+    <div className="shadow-lg rounded-lg p-4  w-full flex">
+      <div className="animate-pulse flex space-x-4 w-full items-center">
+        <div className="flex-[1] space-y-6 py-1 w-full ">
+          <div className="h-2 bg-primary rounded "></div>
+        </div>
+      </div>
+    </div>
+  );
+};

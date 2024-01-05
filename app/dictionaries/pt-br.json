@@ -62,5 +62,11 @@
       "placeholder": "Contrate-me",
       "type": "button"
     }
+  },
+  "projects": {
+    "gratting": "Olá. Eu me chamo",
+    "languagesLabel": "Principais Linguagens.",
+    "contact": "entre em contato",
+    "share": "compartilhar"
   }
 }

@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header";
+import Navbar from "@/components/newPortifolioComp/Navbar/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ThemeProvider from "@/context/ThemeProvider";
@@ -25,6 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
   params: any;
 }) {
+  // const { theme } = useTheme();
   return (
     <>
       <html lang={params.lang} suppressHydrationWarning>
@@ -47,17 +48,21 @@ export default function RootLayout({
           ></script>
         </head>
         <body className={inter.className}>
-          <ThemeProvider>
-            <TooltipProvider>
-              <Header />
-              <QueryProvider>
-                {children}
-                <Analytics mode={"auto"} />
-                <SpeedInsights />
-              </QueryProvider>
-            </TooltipProvider>
-            <Toaster />
-          </ThemeProvider>
+          <div className="App">
+            <ThemeProvider>
+              <TooltipProvider>
+                {/* <Header /> */}
+                <Navbar />
+
+                <QueryProvider>
+                  {children}
+                  <Analytics mode={"auto"} />
+                  <SpeedInsights />
+                </QueryProvider>
+              </TooltipProvider>
+              <Toaster />
+            </ThemeProvider>
+          </div>
         </body>
       </html>
     </>

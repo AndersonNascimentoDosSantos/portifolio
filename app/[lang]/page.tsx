@@ -1,17 +1,37 @@
-import ComponentName from "@/components/clientComponents/Slider/indx";
-import { Suspense } from "react";
+"use client";
+import Experience from "@/components/newPortifolioComp/Experience/Experience";
+import Intro from "@/components/newPortifolioComp/Intro/Intro";
+import Services from "@/components/newPortifolioComp/Services/Services";
+import Works from "@/components/newPortifolioComp/Works/Works";
+import { useTheme } from "next-themes";
 
-import FormContact from "@/components/Form";
-import { getDictionary } from "./dictionaries";
-export default async function Page({
+export default function Page({
   params: { lang },
 }: {
   params: { lang: string };
 }) {
-  const dict = await getDictionary(lang);
+  // const { data: dict } = useSWR(lang, getDictionary);
+  // const dict = await getDictionary(lang);
+  const { theme } = useTheme();
   return (
     <main className="container mx-auto mt-28 max-sm:mt-20">
-      <div className="h-[full] gap-5 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 ">
+      <div
+        style={{
+          background: theme ? "black" : "",
+          color: theme ? "white" : "",
+        }}
+      >
+        {/* <Navbar /> */}
+        <Intro />
+        <Services />
+        <Experience />
+        <Works />
+        {/* <Portfolio /> */}
+        {/* <Testimonial />
+        <Contact />
+        <Footer /> */}
+      </div>
+      {/* <div className="h-[full] gap-5 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 ">
         <section className="flex  h-[full] flex-col flex-grow flex-[2] col-span-2">
           <Suspense>
             <FormContact formnames={dict.form} />
@@ -24,7 +44,7 @@ export default async function Page({
 
           <ComponentName {...{ lang }} />
         </section>
-      </div>
+      </div> */}
     </main>
   );
 }

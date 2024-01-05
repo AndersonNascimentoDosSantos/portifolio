@@ -24,6 +24,9 @@ export function middleware(request: any) {
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
+  // if (pathname.startsWith("/_next/images")) {
+  //   return NextResponse.next(); // Pass the request to Next.js for static handling
+  // }
 
   if (pathnameHasLocale) return;
 
