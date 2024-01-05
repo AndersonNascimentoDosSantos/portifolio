@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Ecommerce from "../../img/ecommerce.png";
@@ -24,16 +25,16 @@ const Portfolio = () => {
         className="portfolio-slider"
       >
         <SwiperSlide>
-          <img src={Sidebar} alt="" />
+          <Image fill src={Sidebar} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={Ecommerce} alt="" />
+          <Image fill src={Ecommerce} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={MusicApp} alt="" />
+          <Image fill src={MusicApp} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={HOC} alt="" />
+          <Image fill src={HOC} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>

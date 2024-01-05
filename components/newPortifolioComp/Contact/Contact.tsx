@@ -10,7 +10,7 @@ const Contact = () => {
   // const darkMode = theme.state.darkMode;
   const form = useRef<HTMLFormElement>(null);
   const [done, setDone] = useState(false);
-  const sendEmail = (e) => {
+  const sendEmail = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     emailjs
@@ -24,7 +24,7 @@ const Contact = () => {
         (result) => {
           console.log(result.text);
           setDone(true);
-          form.reset();
+          // form.reset();
         },
         (error) => {
           console.log(error.text);

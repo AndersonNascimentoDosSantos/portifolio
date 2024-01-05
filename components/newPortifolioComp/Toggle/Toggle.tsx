@@ -1,8 +1,6 @@
-import Moon from "@iconscout/react-unicons/icons/uil-moon";
-import Sun from "@iconscout/react-unicons/icons/uil-sun"; 
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import "./Toggle.css";
-
 const Toggle = () => {
   const { setTheme, theme } = useTheme();
   const handleClick = () => {

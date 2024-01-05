@@ -1,16 +1,14 @@
-import React from "react";
+import Image from "next/image";
+import "./FloatingDiv.css";
 
-import './FloatingDiv.css'
-
-
-const FloatinDiv = ({img, text1, text2}) => {
+const FloatinDiv = ({ img, text1, text2 }: any) => {
   return (
     // darkMode
     <div className="floatingDiv">
-      <img src={img} alt="" />
+      <Image src={img} alt="" fill />
       <span>
         {text1}
-        <br/>
+        <br />
         {text2}
       </span>
     </div>
