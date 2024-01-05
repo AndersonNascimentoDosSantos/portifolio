@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
-import Image from "next/image";
 import "./Works.css";
 const Works = () => {
   // context
@@ -49,19 +48,19 @@ const Works = () => {
           className="w-mainCircle"
         >
           <div className="w-secCircle">
-            <Image fill src={"/img/Upwork.png"} alt="" />
+            <img src={"/img/Upwork.png"} alt="" />
           </div>
           <div className="w-secCircle">
-            <Image fill src={"/img/fiverr.png"} alt="" />
+            <img src={"/img/fiverr.png"} alt="" />
           </div>
           <div className="w-secCircle">
-            <Image fill src={"/img/amazon.png"} alt="" />
+            <img src={"/img/amazon.png"} alt="" />
           </div>{" "}
           <div className="w-secCircle">
-            <Image fill src={"/img/Shopify.png"} alt="" />
+            <img src={"/img/Shopify.png"} alt="" />
           </div>
           <div className="w-secCircle">
-            <Image fill src={"/img/Facebook.png"} alt="" />
+            <img src={"/img/Facebook.png"} alt="" />
           </div>
         </motion.div>
         {/* background Circles */}

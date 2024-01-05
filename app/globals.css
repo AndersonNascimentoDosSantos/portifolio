@@ -7,7 +7,7 @@
     --yellow: #f5c32c;
     --orange: #fca61f;
     --black: #242d49;
-    --gray: #788097;
+    --gray: #3f3f41;
     --blueCard: #ddf8fe;
     --purple: rgb(238 210 255);
     --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
@@ -95,7 +95,7 @@
     @apply shadow-left-bottom; /* Apply the box shadow styles */
   }
   .card {
-    @apply w-[15rem] h-[fit-content] absolute flex flex-col gap-3 items-center text-center bg-opacity-[26] bg-white border border-solid shadow rounded-lg p-0.5 sm:text-left;
+    @apply w-[15rem] h-[fit-content] absolute flex flex-col gap-3 items-center text-center bg-opacity-[26]  border border-solid shadow rounded-lg p-0.5 sm:text-left;
   }
   .card span:nth-of-type(2) {
     @apply text-gray-500 text-sm;
@@ -118,7 +118,7 @@
 }
 
 .App {
-  padding: 0.5rem 3.5rem;
+  /* padding: 0.5rem 3.5rem; */
   overflow: hidden;
   color: var(--black);
 }

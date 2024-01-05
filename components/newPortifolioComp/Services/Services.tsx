@@ -31,13 +31,13 @@ const Services = () => {
           presence,
           <br /> and offer end-to-end web development solutions.
         </span>
-        <a href={"!#"} download>
-          <button className="button s-button">Download CV</button>
+        <a href={"!#"} download className="button s-button">
+          Download CV
         </a>
         <div className="blur s-blur1" style={{ background: "#ABF1FF94" }}></div>
       </div>
       {/* right */}
-      <div className="cards bg-[red]">
+      <div className="cards">
         {/* first card */}
         <motion.div
           initial={{ left: "24rem" }}
@@ -47,22 +47,30 @@ const Services = () => {
           <Card
             emoji={"/img/heartemoji.png"}
             heading={"Conversion-Optimized Website Development"}
-            detail={"Crafting conversion-optimized websites for digital marketers and product owners. Boost traffic and maximize online presence."} color={""}          />
+            detail={
+              "Crafting conversion-optimized websites for digital marketers and product owners. Boost traffic and maximize online presence."
+            }
+            color={""}
+          />
         </motion.div>
         {/* second card */}
         <motion.div
-          initial={{ left: "-10rem", top: "12rem" }}
+          initial={{ left: "-10rem", top: "5rem" }}
           whileInView={{ left: "-0rem" }}
           transition={transition}
         >
           <Card
             emoji={"/img/glasses.png"}
             heading={"Full Stack Developer"}
-            detail={"Expert in NextJS, ReactJS, PHP (Laravel), NodeJS, and ReactNative. Deliver end-to-end web development, from scalable backends to user-friendly frontends."} color={""}          />
+            detail={
+              "Expert in NextJS, ReactJS, PHP (Laravel), NodeJS, and ReactNative. Deliver end-to-end web development, from scalable backends to user-friendly frontends."
+            }
+            color={""}
+          />
         </motion.div>
         {/* 3rd */}
         <motion.div
-          initial={{ top: "15rem", left: "24rem" }}
+          initial={{ top: "25rem", left: "24rem" }}
           whileInView={{ left: "18rem" }}
           transition={transition}
         >

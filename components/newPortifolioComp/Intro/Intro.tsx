@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import { useTheme } from "next-themes";
 
-import Image from "next/image";
 import FloatinDiv from "../FloatingDiv/FloatingDiv";
 import "./Intro.css";
 const Intro = () => {
@@ -39,19 +38,19 @@ const Intro = () => {
         {/* social icons */}
         <div className="i-icons">
           <a href="https://github.com/AndersonNascimentoDosSantos">
-            <Image fill src={"/img/github.png"} alt="" />
+            <img src={"/img/github.png"} alt="" />
           </a>
           <a href="https://www.linkedin.com/in/andersonnascimentodossantos/">
-            <Image fill src={"/img/linkedin.png"} alt="" />
+            <img src={"/img/linkedin.png"} alt="" />
           </a>
-          {/* <a href="!#"><Image fill src={Instagram} alt="" /></a> */}
+          {/* <a href="!#"><img src={Instagram} alt="" /></a> */}
         </div>
       </div>
       {/* right image side */}
       <div className="i-right">
-        <Image fill src={"/img/Vector1.png"} alt="" />
-        <Image fill src={"/img/Vector2.png"} alt="" />
-        <Image fill src={"/img/boy.png"} alt="" />
+        <img src={"/img/Vector1.png"} alt="" />
+        <img src={"/img/Vector2.png"} alt="" />
+        <img src={"/img/boy.png"} alt="" />
         {/* animation */}
         <motion.img
           initial={{ left: "-36%" }}

@@ -1,8 +1,9 @@
 "use client";
+import Contact from "@/components/newPortifolioComp/Contact/Contact";
 import Experience from "@/components/newPortifolioComp/Experience/Experience";
+import Footer from "@/components/newPortifolioComp/Footer/Footer";
 import Intro from "@/components/newPortifolioComp/Intro/Intro";
 import Services from "@/components/newPortifolioComp/Services/Services";
-import Works from "@/components/newPortifolioComp/Works/Works";
 import { useTheme } from "next-themes";
 
 export default function Page({
@@ -25,11 +26,11 @@ export default function Page({
         <Intro />
         <Services />
         <Experience />
-        <Works />
+        {/* <Works /> */}
         {/* <Portfolio /> */}
-        {/* <Testimonial />
+        {/* <Testimonial /> */}
         <Contact />
-        <Footer /> */}
+        <Footer />
       </div>
       {/* <div className="h-[full] gap-5 flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 ">
         <section className="flex  h-[full] flex-col flex-grow flex-[2] col-span-2">

@@ -28,13 +28,13 @@
   font-size: 3rem;
 }
 .i-name > :nth-child(3) {
-  font-weight: 100;
+  font-weight: 300;
   font-size: 14px;
   color: var(--gray);
   margin-top: 10px;
 }
 .i-name > :nth-child(4) {
-  font-weight: 100;
+  font-weight: 300;
   font-size: 14px;
   color: var(--gray);
   margin-top: 10px;
@@ -42,6 +42,9 @@
 .i-button {
   width: 6rem;
   height: 2rem;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
 }
 .i-icons {
   margin-top: 3rem;
@@ -113,8 +116,8 @@
   .i-right .blur {
     display: none;
   }
-  .floating-div:nth-of-type(1){
+  .floating-div:nth-of-type(1) {
     /* display: none; */
-    top: -7rem !important;;
+    top: -7rem !important;
   }
 }

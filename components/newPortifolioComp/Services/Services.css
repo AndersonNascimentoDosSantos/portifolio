@@ -35,6 +35,7 @@
   width: 8rem;
   height: 2rem;
   margin-top: 1rem;
+  white-space: nowrap;
 }
 /* right sided */
 .cards {
